@@ -9,3 +9,7 @@
 > Next
 
 > Nest
+
+> Prisma
+
+> PostgreSQL
