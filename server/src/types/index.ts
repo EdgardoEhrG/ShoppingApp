@@ -7,3 +7,7 @@ export class UserRequest {
   @IsStrongPassword()
   password: string;
 }
+
+export interface TokenPayload {
+  userId: number;
+}
