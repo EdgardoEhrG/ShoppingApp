@@ -1,9 +1,18 @@
 'use client';
 
-import { Box, Button, Modal, Stack, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  Modal,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 import { FormError } from '../types';
 import { createProduct } from './product-actions';
+import { CloudUpload } from '@mui/icons-material';
+import { CSSProperties } from '@mui/material/styles';
 
 const styles = {
   width: 400,
@@ -17,6 +26,18 @@ const styles = {
   boxShadow: 24,
 };
 
+const fileInputStyles: CSSProperties = {
+  width: 1,
+  height: 1,
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  clip: 'rect(0, 0, 0, 0)',
+  clipPath: 'inset(50%)',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+};
+
 interface CreateProductModalProps {
   isOpen: boolean;
   handleClose: () => void;
@@ -27,6 +48,8 @@ const CreateProductModal = ({
   handleClose,
 }: CreateProductModalProps) => {
   const [response, setResponse] = useState<FormError>();
+  const [fileName, setFileName] = useState('');
+  const [file, setFile] = useState<File | null>(null);
 
   const onClose = () => {
     setResponse(undefined);
@@ -34,7 +57,7 @@ const CreateProductModal = ({
   };
 
   const handleForm = async (formData: FormData) => {
-    const response = await createProduct(formData);
+    const response = await createProduct(formData, file ? file : undefined);
     if (response.data) {
       setResponse(response.data);
     } else {
@@ -74,6 +97,21 @@ const CreateProductModal = ({
               helperText={response?.error}
               error={!!response?.error}
             />
+            <Button variant="outlined" startIcon={<CloudUpload />}>
+              Upload file
+              <input
+                type="file"
+                name="image"
+                style={fileInputStyles}
+                onChange={(e) => {
+                  if (e.target.files) {
+                    setFileName(e.target.files[0].name);
+                    setFile(e.target.files[0]);
+                  }
+                }}
+              />
+            </Button>
+            <Typography>{fileName}</Typography>
             <Button type="submit" variant="contained">
               Create
             </Button>
