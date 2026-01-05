@@ -6,7 +6,7 @@ const ProductList = async () => {
   const products = await getProducts();
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} sx={{ height: '85vh', overflow: 'scroll' }}>
       {products.map((product) => {
         return (
           <Grid key={product.id}>

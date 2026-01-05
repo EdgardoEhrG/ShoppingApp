@@ -18,6 +18,14 @@ export const getProducts = async (): Promise<Product[]> => {
   return await axios.get(`${API_URL}/products`);
 };
 
+export const getProductsById = async (productId: number): Promise<Product> => {
+  return await axios.get(`${API_URL}/products/${productId}`);
+};
+
+export const getProductImg = (productId: number) => {
+  return `${API_URL}/products/${productId}.jpg`;
+};
+
 export const uploadProductImg = async (productId: number, file: File) => {
   const formData: FormData = new FormData();
   formData.append('image', file);

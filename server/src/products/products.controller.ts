@@ -4,6 +4,7 @@ import {
   FileTypeValidator,
   Get,
   MaxFileSizeValidator,
+  Param,
   ParseFilePipe,
   Post,
   UploadedFile,
@@ -26,6 +27,12 @@ export class ProductsController {
   @UseGuards(JWTAuthGuard)
   async getProducts() {
     return this.productService.getProducts();
+  }
+
+  @Get(':productId')
+  @UseGuards(JWTAuthGuard)
+  async getProductById(@Param('productId') productId: number) {
+    return this.productService.getProductById(productId);
   }
 
   @Post(':productId/image')

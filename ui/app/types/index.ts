@@ -7,4 +7,5 @@ export interface Product {
   name: string;
   description: string;
   price: number;
+  isThereImg: boolean;
 }
