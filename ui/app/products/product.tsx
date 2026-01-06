@@ -1,11 +1,11 @@
 import { Card, CardActionArea, Stack, Typography } from '@mui/material';
-import type { Product as ProductType } from '../types';
+import type { IProduct } from '../types';
 import Image from 'next/image';
 import { getProductImg } from './product-actions';
 import { useRouter } from 'next/router';
 
 interface ProductProps {
-  product: ProductType;
+  product: IProduct;
 }
 
 const Product = ({ product }: ProductProps) => {

@@ -13,3 +13,13 @@
 > Prisma
 
 > PostgreSQL
+
+> SocketIO
+
+## Useful elements
+
+- [ ] Auth
+
+- [ ] Stripe
+
+- [ ] Socket

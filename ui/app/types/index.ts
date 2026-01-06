@@ -2,7 +2,7 @@ export interface FormError {
   error: string;
 }
 
-export interface Product {
+export interface IProduct {
   id: number;
   name: string;
   description: string;

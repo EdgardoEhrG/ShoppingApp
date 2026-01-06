@@ -29,6 +29,11 @@ export class ProductRequest {
   price: number;
 }
 
+export class SessionRequest {
+  @IsNumber()
+  productId: number;
+}
+
 export interface TokenPayload {
   userId: number;
 }
